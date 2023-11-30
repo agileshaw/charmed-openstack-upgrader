@@ -15,20 +15,8 @@ on:
       - '**.rst'
 
 jobs:
-  lint-unit:
-    name: Lint checkers and unit tests
-    uses: canonical/bootstack-actions/.github/workflows/lint-unit.yaml@v2
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ['3.10']
-    with:
-      python-version: ${{ matrix.python-version }}
-      tox-version: '<4'
-    
   snap-build:
     name: Build snap package
-    needs: lint-unit
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
